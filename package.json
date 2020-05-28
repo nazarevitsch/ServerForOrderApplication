@@ -1,0 +1,23 @@
+{
+  "name": "server_for_order_application",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-base64": "^2.5.2",
+    "koa": "^2.12.0",
+    "koa-body": "^4.1.3",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^8.0.8",
+    "nodemailer": "^6.4.6",
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}
