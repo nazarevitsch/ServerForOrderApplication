@@ -12,10 +12,10 @@ const addUser = (phone, pass, email, username) => {
         `values ('${phone}', '${pass}', '${email}', '${username}');`
     );
 };
-const userAlreadyExist = (email, password) => {
+const userAlreadyExist = (email, phone) => {
   return(
       `select * from users\n` +
-      `where email = '${email} or password = '${password}';`
+      `where email = '${email}' or phone_number = '${phone}';`
   );
 };
 const getMenu = (id) => {

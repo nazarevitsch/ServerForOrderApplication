@@ -5,15 +5,16 @@ async function getUserByEmailPassword(email, password){
     return new Promise((resolve, reject) => {
         client.query(query.searchUserByEmailPassword(email, password), (err, result) =>{
             if (err) {throw err}
-            resolve({ok: result.rowCount > 0 ? true : false});
+            resolve({ok: result.rowCount === 1 ? true : false});
         });
     });
 }
 
-async function userAlreadyExist(email, password){
+async function userAlreadyExist(email, phone){
     return new Promise((resolve, reject) => {
-        client.query(query.userAlreadyExist(email, password), (err, result) =>{
+        client.query(query.userAlreadyExist(email, phone), (err, result) =>{
             if (err) {throw err}
+            console.log(result)
             resolve({ok: result.rowCount > 0 ? true : false});
         });
     });

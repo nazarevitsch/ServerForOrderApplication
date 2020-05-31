@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="875d5cc5-90ac-4480-8a37-0f36142ce566" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/filtersParser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/randomPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataForMailSender.js" beforeDir="false" afterPath="$PROJECT_DIR$/dataForMailSender.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailSender.js" beforeDir="false" afterPath="$PROJECT_DIR$/mailSender.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/queries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/queryToDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/queryToDB.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes.js" afterDir="false" />
@@ -86,7 +81,7 @@
       <updated>1590160589307</updated>
       <workItem from="1590160591014" duration="10266000" />
       <workItem from="1590502156884" duration="61277000" />
-      <workItem from="1590775924623" duration="11478000" />
+      <workItem from="1590775924623" duration="21768000" />
     </task>
     <servers />
   </component>
@@ -98,22 +93,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590689886180" />
-    <state width="745" height="308" key="GridCell.Tab.0.bottom" timestamp="1590941218402">
+    <state width="1515" height="155" key="GridCell.Tab.0.bottom" timestamp="1590960918947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="308" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590941218402" />
-    <state width="745" height="308" key="GridCell.Tab.0.center" timestamp="1590941218402">
+    <state width="1515" height="155" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590960918947" />
+    <state width="1515" height="155" key="GridCell.Tab.0.center" timestamp="1590960918947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="308" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590941218402" />
-    <state width="745" height="308" key="GridCell.Tab.0.left" timestamp="1590941218402">
+    <state width="1515" height="155" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590960918947" />
+    <state width="1515" height="155" key="GridCell.Tab.0.left" timestamp="1590960918946">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="308" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590941218402" />
-    <state width="745" height="308" key="GridCell.Tab.0.right" timestamp="1590941218402">
+    <state width="1515" height="155" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590960918946" />
+    <state width="1515" height="155" key="GridCell.Tab.0.right" timestamp="1590960918947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="308" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590941218402" />
+    <state width="1515" height="155" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590960918947" />
     <state width="746" height="260" key="GridCell.Tab.1.bottom" timestamp="1590743940695">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -170,5 +165,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1590650105889" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/queryToDB.js</url>
+          <line>2</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

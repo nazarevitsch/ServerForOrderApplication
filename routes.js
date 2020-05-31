@@ -21,14 +21,15 @@ router
     })
     .get('/signIn', async (ctx, next) => {
         let a = await Queries.getUserByEmailPassword(ctx.request.headers.login, ctx.request.headers.pass);
-        if (!a.ok) {
-            ctx.response.body = "N";
-        } else {
+        if (a.ok) {
             ctx.response.body = "Y";
+        } else {
+            ctx.response.body = "N";
         }
     })
     .get('/signUp', async (ctx, next) => {
         let a = await Queries.userAlreadyExist(ctx.request.headers.login, ctx.request.headers.phone);
+        console.log(a);
         if (a.ok) {
             ctx.response.body = "N";
         } else {
