@@ -10,9 +10,9 @@ async function getUserByEmailPassword(email, password){
     });
 }
 
-async function userAlreadyExist(email){
+async function userAlreadyExist(email, password){
     return new Promise((resolve, reject) => {
-        client.query(query.serchUserByEmail(email), (err, result) =>{
+        client.query(query.userAlreadyExist(email, password), (err, result) =>{
             if (err) {throw err}
             resolve({ok: result.rowCount > 0 ? true : false});
         });
@@ -92,6 +92,78 @@ async function forgotPassword1(login, code){
     })
 }
 
+async function forgotPassword2(login, code){
+    return new Promise((resolve, reject) => {
+        client.query(query.forgotPassword2(login, code), (err, result) => {
+            if (err) {
+                throw err
+            }
+            resolve({ok: result.rowCount = 1 ? true : false});
+        });
+    })
+}
+
+async function deleteFromForgotPassword(login){
+    return new Promise((resolve, reject) => {
+        client.query(query.deleteFromForgotPassword(login), (err, result) => {
+            if (err) {
+                throw err
+            }
+            resolve({ok: result.rowCount = 1 ? true : false});
+        });
+    })
+}
+
+async function updatePasswordForUser(email, password){
+    return new Promise((resolve, reject) => {
+        client.query(query.updatePasswordForUser(email, password), (err, result) => {
+            if (err) {
+                throw err
+            }
+            resolve({ok: true});
+        });
+    })
+}
+
+async function searchUserByEmail(email) {
+    return new Promise((resolve, reject) => {
+        client.query(query.searchUserByEmail(email), (err, result) => {
+            if (err) {
+                throw err
+            }
+            resolve({ok: result.rowCount = 1 ? true : false});
+        });
+    });
+}
+
+async function getAllCategories(){
+    return new Promise((resolve, reject) => {
+        client.query(query.selectAllCategories, (err, result) => {
+            if (err){
+                throw err;
+            }
+            resolve({data: result.rows});
+        })
+    });
+}
+
+async function getRestaurantMenuByFilters(id, filter){
+    return new Promise((resolve, reject) => {
+        client.query(query.selectAllDishesRestaurantByFilters(id, filter), (err, result) => {
+            if (err){
+                throw err;
+            }
+            resolve({data: result.rowCount});
+        })
+    });
+}
+
+exports.getRestaurantMenuByFilters = getRestaurantMenuByFilters;
+exports.getAllCategories = getAllCategories;
+exports.searchUserByEmail = searchUserByEmail;
+exports.updatePasswordForUser = updatePasswordForUser;
+exports.deleteFromForgotPassword = deleteFromForgotPassword;
+exports.forgotPassword2 = forgotPassword2;
 exports.forgotPassword1 = forgotPassword1;
 exports.getRestaurantByIdWithDescription = getRestaurantByIdWithDescription;
 exports.getAllImages = getAllImages;

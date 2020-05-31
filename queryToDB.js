@@ -12,19 +12,12 @@ const addUser = (phone, pass, email, username) => {
         `values ('${phone}', '${pass}', '${email}', '${username}');`
     );
 };
-const searchUserByEmail = (email) => {
+const userAlreadyExist = (email, password) => {
   return(
       `select * from users\n` +
-      `where email = '${email}';`
+      `where email = '${email} or password = '${password}';`
   );
 };
-const searchUserByPhone = (phone) => {
-    return(
-        `select * from users\n` +
-        `where email = '${phone}';`
-    );
-};
-
 const getMenu = (id) => {
     return(
         `select * from menu_${id}`
@@ -52,16 +45,50 @@ const getRestaurantByIdWithDescription = (id) => {
 };
 const forgotPassword1 = (login, code) => {
     return(
-        `insert into forgot_password(mail, code)\n` +
+        `insert into forgot_password(email, code)\n` +
     `values ('${login}', ${code});`
     )
 };
-const forgotPassword2 = (login) => {
-    return(""
-
+const forgotPassword2 = (login, code) => {
+    return(
+        `select * from forgot_password\n` +
+        `where email = '${login}' and code = ${Number(code)}`
     )
 };
+const deleteFromForgotPassword = (mail) => {
+    return(
+        `delete from forgot_password where email = '${mail}'`
+    );
+};
+const updatePasswordForUser = (email, password) => {
+    return(
+        `update users\n` +
+        `set password = '${password}'\n` +
+        `where email = '${email}'`
+    );
+};
+const searchUserByEmail = (email) => {
+    return(
+        `select * from users\n` +
+        `where email = '${email}'`
+    );
+};
+const selectAllCategories = 'select * from categories';
 
+const selectAllDishesRestaurantByFilters = (id, filter) => {
+    return(
+        `select * from menu_${id}\n` +
+        `where category_id = ${filter.category_id} and price > ${filter.from} and price < ${filter.to}`
+    );
+};
+
+
+
+exports.selectAllDishesRestaurantByFilters = selectAllDishesRestaurantByFilters;
+exports.selectAllCategories = selectAllCategories;
+exports.searchUserByEmail = searchUserByEmail;
+exports.updatePasswordForUser = updatePasswordForUser;
+exports.deleteFromForgotPassword = deleteFromForgotPassword;
 exports.forgotPassword1 = forgotPassword1;
 exports.forgotPassword2 = forgotPassword2;
 exports.getRestaurantByIdWithDescription = getRestaurantByIdWithDescription;
@@ -71,5 +98,4 @@ exports.getMenu = getMenu;
 exports.addUser = addUser;
 exports.searchUserByEmailPassword = searchUserByEmailPassword;
 exports.selectAllRestaurants = selectAllRestaurants;
-exports.serchUserByPhone = searchUserByPhone;
-exports.serchUserByEmail = searchUserByEmail;
+exports.userAlreadyExist = userAlreadyExist;

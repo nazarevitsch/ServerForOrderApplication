@@ -1,7 +1,7 @@
 const nodeMailer = require('nodemailer');
 const data = require('./dataForMailSender');
 
-const sendMailForForgotPassword = (mail, code) => {
+const sendMail = (mail, text ,code) => {
   let transport = nodeMailer.createTransport({
       service: 'gmail',
       auth: {
@@ -14,7 +14,7 @@ const sendMailForForgotPassword = (mail, code) => {
       from: data.mail,
       to: mail,
       subject: 'New Password',
-      text: 'Your code for new password: ' + code
+      text: text + code
   }
   transport.sendMail(mailOption, (err, data) =>{
       if (err){
@@ -24,4 +24,13 @@ const sendMailForForgotPassword = (mail, code) => {
   })
 };
 
-exports.sendMailForForgotPassword = sendMailForForgotPassword;
+const sendMailForForgotPasswordWithCode = (mail, code) =>{
+    sendMail(mail, 'Your code for new password: ', code)
+};
+
+const sendMailForForgotPasswordWithPassword = (mail, password) =>{
+    sendMail(mail, 'Your new password: ', password)
+}
+
+exports.sendMailForForgotPasswordWithPassword = sendMailForForgotPasswordWithPassword;
+exports.sendMailForForgotPasswordWithCode = sendMailForForgotPasswordWithCode;

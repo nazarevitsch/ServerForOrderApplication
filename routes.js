@@ -1,14 +1,23 @@
 const Router = require('koa-router');
-const Queries = require('./queries.js');
 const fs = require('fs');
+const Queries = require('./queries.js');
 const menuParser = require('./createMenu.js');
 const mailSender = require('./mailSender.js');
+const createPassword = require('./randomPassword.js');
+const filterParser = require('./filtersParser.js')
 
 const router = new Router();
 
 router
     .get('/', async (ctx, next) => {
-        ctx.response.body = await Queries.getAllRestaurnats();
+        console.log(ctx.request.headers);
+        if (ctx.request.headers.filters === '') {
+            ctx.response.body = await Queries.getAllRestaurnats();
+        } else {
+            let filters = await filterParser.parseFilter(ctx.request.headers.filters);
+            let restaurants = await Queries.getAllRestaurnats();
+            ctx.response.body = await filterParser.choiceRestaurants(restaurants, filters);
+        }
     })
     .get('/signIn', async (ctx, next) => {
         let a = await Queries.getUserByEmailPassword(ctx.request.headers.login, ctx.request.headers.pass);
@@ -19,18 +28,17 @@ router
         }
     })
     .get('/signUp', async (ctx, next) => {
-        let a = await Queries.userAlreadyExist(ctx.request.headers.login);
+        let a = await Queries.userAlreadyExist(ctx.request.headers.login, ctx.request.headers.phone);
         if (a.ok) {
             ctx.response.body = "N";
         } else {
-            ctx.response.body = "Y";
             Queries.addUser(ctx.request.headers.login, ctx.request.headers.pass, ctx.request.headers.name, ctx.request.headers.phone);
+            ctx.response.body = "Y";
         }
     })
     .get('/img', async (ctx, next) => {
         const src = fs.createReadStream('./images/' + ctx.request.headers.name);
         ctx.response.set("content-type");
-        // console.log(ctx.request.headers);
         ctx.body = src;
     })
     .get('/item', async (ctx, next) =>{
@@ -48,28 +56,31 @@ router
             images: images.data,
             menu: menu
         }]
-        console.log(ctx.response.body);
     })
     .get('/ForgotPass1', async (ctx, next) => {
-        let code = Math.floor(Math.random() * 899999) + 100000;
-        let a = await Queries.forgotPassword1(ctx.request.headers.login, code);
-        mailSender.sendMailForForgotPassword(ctx.request.headers.login, code);
+        let b = await Queries.searchUserByEmail(ctx.request.headers.login);
+        if (b.ok) {
+            let code = Math.floor(Math.random() * 899999) + 100000;
+            let a = await Queries.forgotPassword1(ctx.request.headers.login, code);
+            await mailSender.sendMailForForgotPasswordWithCode(ctx.request.headers.login, code);
+            ctx.response.body = "Y";
+        } else {
+            ctx.response.body = "N";
+        }
+    })
+    .get('/ForgotPass2', async (ctx, next) => {
+        let answer = await Queries.forgotPassword2(ctx.request.headers.login, ctx.request.headers.code);
+        if (answer.ok){
+            let pass = createPassword.createRandomPassword(10);
+            await Queries.deleteFromForgotPassword(ctx.request.headers.login);
+            let b = await Queries.updatePasswordForUser(ctx.request.headers.login, pass);
+            mailSender.sendMailForForgotPasswordWithPassword(ctx.request.headers.login, pass);
+            if (b.ok) ctx.response.body = "Y";
+        }
+    }).get('/categories', async (ctx, next) => {
+        let b = await Queries.getAllCategories();
+        ctx.response.body = b;
     });
 
-
-
-
-// if (req.url == "/ForgotPass1") {
-//         res.statusCode = 200;
-//         code = Math.floor(Math.random() * 899999) + 100000;
-//         console.log(code);
-//         res.end("Y");
-//     }
-//     if (req.url == "/ForgotPass2") {
-//         res.statusCode = 200;
-//         if (Number(req.headers.code) === code) {
-//             res.end("Y");
-//         } else res.end("N");
-//     }
 
 exports.routes = router.routes();
