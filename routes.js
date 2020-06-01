@@ -10,7 +10,6 @@ const router = new Router();
 
 router
     .get('/', async (ctx, next) => {
-        console.log(ctx.request.headers);
         if (ctx.request.headers.filters === '') {
             ctx.response.body = await Queries.getAllRestaurnats();
         } else {
@@ -81,7 +80,11 @@ router
     }).get('/categories', async (ctx, next) => {
         let b = await Queries.getAllCategories();
         ctx.response.body = b;
-    });
+    }).get('/create_order', async (ctx, next) => {
+        let id = await Queries.getUserIdByEmail(ctx.request.headers.email);
+        await Queries.insertIntoOrders(ctx.request.headers.id, id.data, ctx.request.headers.date, ctx.request.headers.peopleamount);
+        ctx.response.body = "Y";
+});
 
 
 exports.routes = router.routes();

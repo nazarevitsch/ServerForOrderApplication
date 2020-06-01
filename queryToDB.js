@@ -82,8 +82,21 @@ const selectAllDishesRestaurantByFilters = (id, filter) => {
     );
 };
 
+const insertIntoOrders = (restaurant_id, user_id, date, peopleAmount) => {
+    return(
+        `insert into restaurant_orders_${restaurant_id}(user_id, date, peopleAmount)\n` +
+        `values (${user_id}, '${date}', ${peopleAmount});`
+    );
+};
 
+const getUserIdByEmail = (email) => {
+    return(
+        `select id from users where email = '${email}'`
+    );
+}
 
+exports.getUserIdByEmail = getUserIdByEmail;
+exports.insertIntoOrders = insertIntoOrders;
 exports.selectAllDishesRestaurantByFilters = selectAllDishesRestaurantByFilters;
 exports.selectAllCategories = selectAllCategories;
 exports.searchUserByEmail = searchUserByEmail;

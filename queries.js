@@ -159,6 +159,30 @@ async function getRestaurantMenuByFilters(id, filter){
     });
 }
 
+async function getUserIdByEmail(email){
+    return new Promise((resolve, reject) => {
+        client.query(query.getUserIdByEmail(email), (err, result) => {
+            if (err){
+                throw err;
+            }
+            resolve({data: result.rows[0].id});
+        })
+    });
+}
+
+async function insertIntoOrders(restaurant_id, user_id, date, peopleAmount){
+    return new Promise((resolve, reject) => {
+        client.query(query.insertIntoOrders(restaurant_id, user_id, date, peopleAmount), (err, result) => {
+            if (err){
+                throw err;
+            }
+            resolve({});
+        })
+    });
+}
+
+exports.insertIntoOrders = insertIntoOrders;
+exports.getUserIdByEmail = getUserIdByEmail;
 exports.getRestaurantMenuByFilters = getRestaurantMenuByFilters;
 exports.getAllCategories = getAllCategories;
 exports.searchUserByEmail = searchUserByEmail;
