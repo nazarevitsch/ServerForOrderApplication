@@ -1,4 +1,4 @@
-const Queries = require('./queries.js');
+const Queries = require('../workWithDB/queries.js');
 const menuParser = require('./createMenu.js');
 
 const getItem = async (id) => {

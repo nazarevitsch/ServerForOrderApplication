@@ -1,4 +1,4 @@
-const Queries = require('./queries.js');
+const Queries = require('../workWithDB/queries.js');
 
 const parseFilter = async (filters) => {
     let normalFilters = [];

@@ -1,5 +1,5 @@
 const Koa = require('koa');
-const {routes} = require('./routes.js');
+const {routes} = require('./App/routes.js');
 
 const server = new Koa();
 

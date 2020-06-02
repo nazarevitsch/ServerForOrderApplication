@@ -1,4 +1,4 @@
-const Queries = require('./queries.js');
+const Queries = require('../workWithDB/queries.js');
 
 async function createMenu(data) {
     let answer = [];

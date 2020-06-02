@@ -1,10 +1,10 @@
 const Router = require('koa-router');
 const fs = require('fs');
-const Queries = require('./queries.js');
-const filterParser = require('./filtersParser.js');
-const Authorization = require('./authorization.js');
-const CreateItem = require('./createItemOfRestaurant.js');
-const Orders = require('./orders.js');
+const Queries = require('./workWithDB/queries.js');
+const filterParser = require('./routes/filtersParser.js');
+const Authorization = require('./routes/authorization.js');
+const CreateItem = require('./routes/createItemOfRestaurant.js');
+const Orders = require('./routes/orders.js');
 
 const router = new Router();
 

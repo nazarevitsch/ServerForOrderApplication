@@ -1,5 +1,5 @@
-const Queries = require('./queries.js');
-const mailSender = require('./mailSender.js');
+const Queries = require('../workWithDB/queries.js');
+const mailSender = require('../mailSending/mailSender.js');
 const createPassword = require('./randomPassword.js');
 
 
