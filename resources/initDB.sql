@@ -82,6 +82,70 @@ insert into images_1(name)
 values ('index2.jpg');
 
 
+drop table if exists images_2 CASCADE;
+create table images_2(
+    id SERIAL primary key,
+    name varchar(255)
+);
+
+insert into images_2(name)
+values ('index2.jpg');
+insert into images_2(name)
+values ('index2.jpg');
+insert into images_2(name)
+values ('index2.jpg');
+insert into images_2(name)
+values ('index2.jpg');
+
+
+drop table if exists images_3 CASCADE;
+create table images_3(
+    id SERIAL primary key,
+    name varchar(255)
+);
+
+insert into images_3(name)
+values ('index2.jpg');
+insert into images_3(name)
+values ('index2.jpg');
+insert into images_3(name)
+values ('index2.jpg');
+insert into images_3(name)
+values ('index2.jpg');
+
+
+drop table if exists images_4 CASCADE;
+create table images_4(
+    id SERIAL primary key,
+    name varchar(255)
+);
+
+insert into images_4(name)
+values ('index2.jpg');
+insert into images_4(name)
+values ('index2.jpg');
+insert into images_4(name)
+values ('index2.jpg');
+insert into images_4(name)
+values ('index2.jpg');
+
+
+drop table if exists images_5 CASCADE;
+create table images_5(
+    id SERIAL primary key,
+    name varchar(255)
+);
+
+
+insert into images_5(name)
+values ('index2.jpg');
+insert into images_5(name)
+values ('index2.jpg');
+insert into images_5(name)
+values ('index2.jpg');
+insert into images_5(name)
+values ('index2.jpg');
+
 --Menu Restaurant Table
 
 
