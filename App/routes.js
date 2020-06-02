@@ -10,6 +10,9 @@ const router = new Router();
 
 router
     .get('/', async (ctx, next) => {
+        ctx.response.body = "Hallo!";
+    })
+    .get('/restaurants', async (ctx, next) => {
         ctx.response.body = await filterParser.getRestaurants(ctx.request.headers.filters);
     })
     .get('/signIn', async (ctx, next) => {
