@@ -14,7 +14,6 @@ async function userAlreadyExist(email, phone){
     return new Promise((resolve, reject) => {
         client.query(query.userAlreadyExist(email, phone), (err, result) =>{
             if (err) {throw err}
-            console.log(result)
             resolve({ok: result.rowCount > 0 ? true : false});
         });
     });
@@ -31,11 +30,14 @@ async function getAllRestaurants() {
     });
 }
 
-async function addUser(email, pass, name, phone){
-    client.query(query.addUser(phone, pass, email, name), (err, result) => {
-        if (err) {
-            throw err
-        }
+async function addUser(email, pass, name, phone) {
+    return new Promise((resolve, reject) => {
+        client.query(query.addUser(phone, pass, email, name), (err, result) => {
+            if (err) {
+                throw err
+            }
+            resolve({ok: true});
+        });
     });
 }
 
@@ -65,7 +67,7 @@ async function getAllImages(id){
     return new Promise((resolve, reject) => {
         client.query(query.getAllImages(id), (err, result) => {
             if (err) {
-                throw err
+                throw err;
             }
             resolve({data: result.rows});
         });

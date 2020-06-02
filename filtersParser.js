@@ -2,7 +2,7 @@ const Queries = require('./queries.js');
 
 const parseFilter = async (filters) => {
     let normalFilters = [];
-    let lines = filters.split("|").slice(1);
+    let lines = filters.split("|");
     for (let i = 0; i < lines.length - 1; i++){
         let f = lines[i].split('_');
         normalFilters.push({category_id: Number(f[1]), from: Number(f[0]), to: Number(f[2])});
@@ -23,5 +23,16 @@ const choiceRestaurants = async (restaurants, filters) => {
     return restaurants;
 };
 
+const getRestaurants = async (filters) => {
+    if (filters === '') {
+        return await Queries.getAllRestaurnats();
+    } else {
+        let parsedFilters = await parseFilter(filters);
+        let restaurants = await Queries.getAllRestaurnats();
+        return await choiceRestaurants(restaurants, parsedFilters);
+    }
+}
+
+exports.getRestaurants = getRestaurants;
 exports.choiceRestaurants = choiceRestaurants;
 exports.parseFilter = parseFilter;
