@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="875d5cc5-90ac-4480-8a37-0f36142ce566" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ConnectionToDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/workWithDB/ConnectionToDB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/authorization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createItemOfRestaurant.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/createItemOfRestaurant.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/createMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataForMailSender.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/mailSending/dataForMailSender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filtersParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/filtersParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailSender.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/mailSending/mailSender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/orders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/workWithDB/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queryToDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/workWithDB/queryToDB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/randomPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes/randomPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +82,7 @@
       <workItem from="1590160591014" duration="10266000" />
       <workItem from="1590502156884" duration="61277000" />
       <workItem from="1590775924623" duration="22016000" />
-      <workItem from="1591006727425" duration="22008000" />
+      <workItem from="1591006727425" duration="23382000" />
     </task>
     <servers />
   </component>
