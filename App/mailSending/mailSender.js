@@ -16,12 +16,16 @@ const sendMail = (mail, text ,code) => {
       subject: 'New Password',
       text: text + code
   }
-  transport.sendMail(mailOption, (err, data) =>{
-      if (err){
-          console.log(err);
-      }
-      console.log('Mail sent' + data);
-  })
+  try {
+      transport.sendMail(mailOption, (err, data) => {
+          if (err) {
+              console.log(err);
+          }
+          console.log('Mail sent' + data);
+      })
+  } catch (e) {
+      console.log(e);
+  }
 };
 
 const sendMailForForgotPasswordWithCode = (mail, code) =>{

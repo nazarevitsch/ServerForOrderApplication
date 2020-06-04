@@ -43,6 +43,7 @@ const getRestaurantByIdWithDescription = (id) => {
         `where r.id = ${id}`
     );
 };
+
 const forgotPassword1 = (login, code) => {
     return(
         `insert into forgot_password(email, code)\n` +
@@ -93,8 +94,44 @@ const getUserIdByEmail = (email) => {
     return(
         `select id from users where email = '${email}'`
     );
-}
+};
 
+const createUserOrdersTable = (id) => {
+    return(
+        `drop table if exists user_orders_${id} CASCADE;\n` +
+        `create table user_orders_${id}(\n` +
+        `id SERIAL primary key,\n` +
+        `restaurant_id int,\n` +
+        `date timestamp,\n` +
+        `peopleAmount int);`
+    );
+};
+
+const insertIntoUserOrders = (userId, restaurantId, date, peopleAmount) => {
+    return(
+        `insert into user_orders_${userId}(restaurant_id, date, peopleAmount)\n` +
+        `values (${restaurantId}, '${date}', ${peopleAmount});`
+    );
+};
+
+const getAllUserOrders = (id) => {
+    return(
+        `select * from user_orders_${id}`
+    );
+};
+
+const getRestaurantById = (id) => {
+    return(
+        `select * from restaurants \n` +
+        `where id = ${id}`
+    );
+};
+
+
+exports.getRestaurantById = getRestaurantById;
+exports.getAllUserOrders = getAllUserOrders;
+exports.insertIntoUserOrders = insertIntoUserOrders;
+exports.createUserOrdersTable = createUserOrdersTable;
 exports.getUserIdByEmail = getUserIdByEmail;
 exports.insertIntoOrders = insertIntoOrders;
 exports.selectAllDishesRestaurantByFilters = selectAllDishesRestaurantByFilters;

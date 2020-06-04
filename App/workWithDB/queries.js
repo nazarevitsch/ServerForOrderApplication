@@ -183,6 +183,48 @@ async function insertIntoOrders(restaurant_id, user_id, date, peopleAmount){
     });
 }
 
+async function createUserOrdersTable(id){
+    client.query(query.createUserOrdersTable(id), (err, result) => {
+        if (err){
+            throw err;
+        }
+    })
+}
+
+async function insertIntoUserOrders(userId, restaurantId, date, peopleAmount){
+    client.query(query.insertIntoUserOrders(userId, restaurantId, date, peopleAmount), (err, result) => {
+        if (err){
+            throw err;
+        }
+    })
+}
+
+async function getAllUserOrders(id){
+    return new Promise((resolve, reject) => {
+        client.query(query.getAllUserOrders(id), (err, result) => {
+            if (err){
+                throw err;
+            }
+            resolve({data: result.rows});
+        })
+    });
+}
+
+async function getRestaurantById(id){
+    return new Promise((resolve, reject) => {
+        client.query(query.getRestaurantById(id), (err, result) => {
+            if (err){
+                throw err;
+            }
+            resolve({data: result.rows});
+        })
+    });
+}
+
+exports.getRestaurantById = getRestaurantById;
+exports.getAllUserOrders = getAllUserOrders;
+exports.createUserOrdersTable = createUserOrdersTable;
+exports.insertIntoUserOrders = insertIntoUserOrders;
 exports.insertIntoOrders = insertIntoOrders;
 exports.getUserIdByEmail = getUserIdByEmail;
 exports.getRestaurantMenuByFilters = getRestaurantMenuByFilters;

@@ -5,7 +5,7 @@ const client = new Client({
 
 client.connect()
     .then(()=> {
-        console.log("Connection is...");})
+        console.log("Connection to DB is working...");})
     .catch(e => console.log(e));
 
 module.exports = client;

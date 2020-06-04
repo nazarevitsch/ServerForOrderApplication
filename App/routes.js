@@ -38,8 +38,13 @@ router
     })
     .get('/categories', async (ctx, next) => {
         ctx.response.body = await Queries.getAllCategories();
-    }).get('/create_order', async (ctx, next) => {
+    })
+    .get('/create_order', async (ctx, next) => {
         ctx.response.body = await Orders.createOrder(ctx.request.headers.email, ctx.request.headers.id, ctx.request.headers.date, ctx.request.headers.peopleamount)
+    })
+    .get('/user_orders', async (ctx, next) => {
+        console.log(ctx.request.headers)
+        ctx.response.body = await Orders.getUserOrders(ctx.request.headers.email);
 });
 
 
