@@ -25,10 +25,10 @@ const choiceRestaurants = async (restaurants, filters) => {
 
 const getRestaurants = async (filters) => {
     if (filters === '') {
-        return await Queries.getAllRestaurnats();
+        return await Queries.getAllRestaurants();
     } else {
         let parsedFilters = await parseFilter(filters);
-        let restaurants = await Queries.getAllRestaurnats();
+        let restaurants = await Queries.getAllRestaurants();
         return await choiceRestaurants(restaurants, parsedFilters);
     }
 }

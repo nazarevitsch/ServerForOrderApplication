@@ -2,191 +2,127 @@ const client = require('./ConnectionToDB.js');
 const query = require('./queryToDB.js');
 
 async function getUserByEmailPassword(email, password){
-    return new Promise((resolve, reject) => {
-        client.query(query.searchUserByEmailPassword(email, password), (err, result) =>{
-            if (err) {throw err}
-            resolve({ok: result.rowCount === 1 ? true : false});
-        });
-    });
+    return client
+        .query(query.searchUserByEmailPassword(email, password))
+        .then(result => {return {ok: result.rowCount === 1 ? true : false}})
+        .catch(err => console.log(err));
 }
 
 async function userAlreadyExist(email, phone){
-    return new Promise((resolve, reject) => {
-        client.query(query.userAlreadyExist(email, phone), (err, result) =>{
-            if (err) {throw err}
-            resolve({ok: result.rowCount > 0 ? true : false});
-        });
-    });
+    return client
+        .query(query.userAlreadyExist(email, phone))
+        .then(result => {return {ok: result.rowCount === 1 ? true : false}})
+        .catch(err => console.log(err));
 };
 
 async function getAllRestaurants() {
-    return new Promise((resolve, reject) => {
-        client.query(query.selectAllRestaurants, (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({status: 200, data: result.rows});
-        });
-    });
+    return client
+        .query(query.selectAllRestaurants)
+        .then(result => {return {status: 200, data: result.rows}})
+        .catch(err => {console.log(err)});
 }
 
 async function addUser(email, pass, name, phone) {
-    return new Promise((resolve, reject) => {
-        client.query(query.addUser(phone, pass, email, name), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({ok: true});
-        });
-    });
+    return client
+        .query(query.addUser(phone, pass, email, name))
+        .then(result => {return {ok: true}})
+        .catch(err => {console.log(err)});
 }
 
 async function getMenu(id){
-    return new Promise((resolve, reject) => {
-        client.query(query.getMenu(id), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({data: result.rows});
-        });
-    });
+    return client
+        .query(query.getMenu(id))
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)});
 }
 
 async function getAllCategories(){
-    return new Promise((resolve, reject) => {
-        client.query(query.getAllCategories(), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({data: result.rows});
-        });
-    });
+    return client
+        .query(query.getAllCategories())
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)})
 }
 
 async function getAllImages(id){
-    return new Promise((resolve, reject) => {
-        client.query(query.getAllImages(id), (err, result) => {
-            if (err) {
-                throw err;
-            }
-            resolve({data: result.rows});
-        });
-    });
+    return client
+        .query(query.getAllImages(id))
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)});
 }
 async function getRestaurantByIdWithDescription(id){
-    return new Promise((resolve, reject) => {
-        client.query(query.getRestaurantByIdWithDescription(id), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({data: result.rows});
-        });
-    });
+    return client
+        .query(query.getRestaurantByIdWithDescription(id))
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)})
 }
 
 async function forgotPassword1(login, code){
-    return new Promise((resolve, reject) => {
-        client.query(query.forgotPassword1(login, code), (err, result) => {
-            if (err) {
-                throw err
-            }
-        });
-        resolve({ok: 'ok'});
-    })
+    return client
+        .query(query.forgotPassword1(login, code))
+        .then(result => {return {ok: 'ok'}})
+        .catch(err => {console.log(err)})
 }
 
 async function forgotPassword2(login, code){
-    return new Promise((resolve, reject) => {
-        client.query(query.forgotPassword2(login, code), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({ok: result.rowCount = 1 ? true : false});
-        });
-    })
+    return client
+        .query(query.forgotPassword2(login, code))
+        .then(result => {return{ok: result.rowCount === 1 ? true : false}})
+        .catch(err => {console.log(err)})
 }
 
 async function deleteFromForgotPassword(login){
-    return new Promise((resolve, reject) => {
-        client.query(query.deleteFromForgotPassword(login), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({ok: result.rowCount = 1 ? true : false});
-        });
-    })
+    return client
+        .query(query.deleteFromForgotPassword(login))
+        .then(result => {return {ok: result.rowCount === 1 ? true : false}})
+        .catch(err => {console.log(err)})
 }
 
 async function updatePasswordForUser(email, password){
-    return new Promise((resolve, reject) => {
-        client.query(query.updatePasswordForUser(email, password), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({ok: true});
-        });
-    })
+    return client
+        .query(query.updatePasswordForUser(email, password))
+        .then(result => {return {ok: true}})
+        .catch(err => {console.log(err)})
 }
 
 async function searchUserByEmail(email) {
-    return new Promise((resolve, reject) => {
-        client.query(query.searchUserByEmail(email), (err, result) => {
-            if (err) {
-                throw err
-            }
-            resolve({ok: result.rowCount = 1 ? true : false});
-        });
-    });
+    return client
+        .query(query.searchUserByEmail(email))
+        .then(result => {return {ok: result.rowCount === 1 ? true : false}})
+        .catch(err => {console.log(err)})
 }
 
 async function getAllCategories(){
-    return new Promise((resolve, reject) => {
-        client.query(query.selectAllCategories, (err, result) => {
-            if (err){
-                throw err;
-            }
-            resolve({data: result.rows});
-        })
-    });
+    return client
+        .query(query.selectAllCategories)
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)})
 }
 
 async function getRestaurantMenuByFilters(id, filter){
-    return new Promise((resolve, reject) => {
-        client.query(query.selectAllDishesRestaurantByFilters(id, filter), (err, result) => {
-            if (err){
-                throw err;
-            }
-            resolve({data: result.rowCount});
-        })
-    });
+    return client
+        .query(query.selectAllDishesRestaurantByFilters(id, filter))
+        .then(result => {return {data: result.rowCount}})
+        .catch(err => {console.log(err)})
 }
 
 async function getUserIdByEmail(email){
-    return new Promise((resolve, reject) => {
-        client.query(query.getUserIdByEmail(email), (err, result) => {
-            if (err){
-                throw err;
-            }
-            resolve({data: result.rows[0].id});
-        })
-    });
+    return client
+        .query(query.getUserIdByEmail(email))
+        .then(result => {return {data: result.rows[0].id}})
+        .catch(err => {console.log(err)})
 }
 
 async function insertIntoOrders(restaurant_id, user_id, date, peopleAmount){
-    return new Promise((resolve, reject) => {
-        client.query(query.insertIntoOrders(restaurant_id, user_id, date, peopleAmount), (err, result) => {
-            if (err){
-                throw err;
-            }
-            resolve({});
-        })
-    });
+    return client
+        .query(query.insertIntoOrders(restaurant_id, user_id, date, peopleAmount))
+        .then(result => {return {}})
+        .catch(err => {console.log(err)})
 }
 
 async function createUserOrdersTable(id){
     client.query(query.createUserOrdersTable(id), (err, result) => {
         if (err){
-            throw err;
+            console.log(err);
         }
     })
 }
@@ -194,51 +130,44 @@ async function createUserOrdersTable(id){
 async function insertIntoUserOrders(userId, restaurantId, date, peopleAmount){
     client.query(query.insertIntoUserOrders(userId, restaurantId, date, peopleAmount), (err, result) => {
         if (err){
-            throw err;
+            console.log(err);
         }
     })
 }
 
 async function getAllUserOrders(id){
-    return new Promise((resolve, reject) => {
-        client.query(query.getAllUserOrders(id), (err, result) => {
-            if (err){
-                throw err;
-            }
-            resolve({data: result.rows});
-        })
-    });
+    return client
+        .query(query.getAllUserOrders(id))
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)})
 }
 
 async function getRestaurantById(id){
-    return new Promise((resolve, reject) => {
-        client.query(query.getRestaurantById(id), (err, result) => {
-            if (err){
-                throw err;
-            }
-            resolve({data: result.rows});
-        })
-    });
+    return client
+        .query(query.getRestaurantById(id))
+        .then(result => {return {data: result.rows}})
+        .catch(err => {console.log(err)})
 }
 
-exports.getRestaurantById = getRestaurantById;
-exports.getAllUserOrders = getAllUserOrders;
-exports.createUserOrdersTable = createUserOrdersTable;
-exports.insertIntoUserOrders = insertIntoUserOrders;
-exports.insertIntoOrders = insertIntoOrders;
-exports.getUserIdByEmail = getUserIdByEmail;
-exports.getRestaurantMenuByFilters = getRestaurantMenuByFilters;
-exports.getAllCategories = getAllCategories;
-exports.searchUserByEmail = searchUserByEmail;
-exports.updatePasswordForUser = updatePasswordForUser;
-exports.deleteFromForgotPassword = deleteFromForgotPassword;
-exports.forgotPassword2 = forgotPassword2;
-exports.forgotPassword1 = forgotPassword1;
-exports.getRestaurantByIdWithDescription = getRestaurantByIdWithDescription;
-exports.getAllImages = getAllImages;
-exports.getAllCategories = getAllCategories;
-exports.getMenu = getMenu;
-exports.getUserByEmailPassword = getUserByEmailPassword;
-exports.addUser = addUser;
-exports.getAllRestaurnats = getAllRestaurants;
-exports.userAlreadyExist = userAlreadyExist;
+module.exports = {
+    getRestaurantById,
+    getAllUserOrders,
+    createUserOrdersTable,
+    insertIntoUserOrders,
+    insertIntoOrders,
+    getUserIdByEmail,
+    getRestaurantMenuByFilters,
+    getAllCategories,
+    searchUserByEmail,
+    updatePasswordForUser,
+    deleteFromForgotPassword,
+    forgotPassword2,
+    forgotPassword1,
+    getRestaurantByIdWithDescription,
+    getAllImages,
+    getMenu,
+    getUserByEmailPassword,
+    addUser,
+    getAllRestaurants,
+    userAlreadyExist
+};

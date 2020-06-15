@@ -24,11 +24,6 @@ const getMenu = (id) => {
     );
 };
 
-const getAllCategories = () => {
-    return(
-        `select * from categories`
-    );
-};
 
 const getAllImages = (id) => {
     return(
@@ -127,25 +122,25 @@ const getRestaurantById = (id) => {
     );
 };
 
-
-exports.getRestaurantById = getRestaurantById;
-exports.getAllUserOrders = getAllUserOrders;
-exports.insertIntoUserOrders = insertIntoUserOrders;
-exports.createUserOrdersTable = createUserOrdersTable;
-exports.getUserIdByEmail = getUserIdByEmail;
-exports.insertIntoOrders = insertIntoOrders;
-exports.selectAllDishesRestaurantByFilters = selectAllDishesRestaurantByFilters;
-exports.selectAllCategories = selectAllCategories;
-exports.searchUserByEmail = searchUserByEmail;
-exports.updatePasswordForUser = updatePasswordForUser;
-exports.deleteFromForgotPassword = deleteFromForgotPassword;
-exports.forgotPassword1 = forgotPassword1;
-exports.forgotPassword2 = forgotPassword2;
-exports.getRestaurantByIdWithDescription = getRestaurantByIdWithDescription;
-exports.getAllImages = getAllImages;
-exports.getAllCategories = getAllCategories;
-exports.getMenu = getMenu;
-exports.addUser = addUser;
-exports.searchUserByEmailPassword = searchUserByEmailPassword;
-exports.selectAllRestaurants = selectAllRestaurants;
-exports.userAlreadyExist = userAlreadyExist;
+module.exports = {
+    getRestaurantById,
+    getAllUserOrders,
+    createUserOrdersTable,
+    insertIntoUserOrders,
+    insertIntoOrders,
+    getUserIdByEmail,
+    selectAllDishesRestaurantByFilters,
+    selectAllCategories,
+    searchUserByEmail,
+    updatePasswordForUser,
+    deleteFromForgotPassword,
+    forgotPassword2,
+    forgotPassword1,
+    getRestaurantByIdWithDescription,
+    getAllImages,
+    getMenu,
+    searchUserByEmailPassword,
+    addUser,
+    selectAllRestaurants,
+    userAlreadyExist
+};

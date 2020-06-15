@@ -17,7 +17,6 @@ router
     })
     .get('/signIn', async (ctx, next) => {
         ctx.response.body = await Authorization.signIn(ctx.request.headers.login, ctx.request.headers.pass);
-
     })
     .get('/signUp', async (ctx, next) => {
         ctx.response.body = await Authorization.signUp(ctx.request.headers.login, ctx.request.headers.pass, ctx.request.headers.phone, ctx.request.headers.name);
