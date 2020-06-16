@@ -9,7 +9,7 @@ const createOrder = async (data) => {
     let userId = await Queries.getUserIdByEmail(email);
     await Queries.insertIntoUserOrders(userId.data, id, date, peopleAmount);
     await Queries.insertIntoOrders(id, userId.data, date, peopleAmount);
-    return "Y";
+    return 200;
 };
 
 const getUserOrders = async (email) => {
