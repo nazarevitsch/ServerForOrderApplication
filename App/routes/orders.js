@@ -1,7 +1,11 @@
 const Queries = require('../workWithDB/queries.js');
 
 
-const createOrder = async (email, id, date, peopleAmount) => {
+const createOrder = async (data) => {
+    let email = data.email;
+    let id = data.id;
+    let date = data.date;
+    let peopleAmount = data.peopleAmount;
     let userId = await Queries.getUserIdByEmail(email);
     await Queries.insertIntoUserOrders(userId.data, id, date, peopleAmount);
     await Queries.insertIntoOrders(id, userId.data, date, peopleAmount);

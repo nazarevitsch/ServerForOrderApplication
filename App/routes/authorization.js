@@ -5,18 +5,22 @@ const createPassword = require('./randomPassword.js');
 
 const signIn = async (email, password) => {
     let a = await Queries.getUserByEmailPassword(email, password);
-    return a.ok ? "Y" : "N";
+    return a.ok ? 200 : 401;
 };
 
-const signUp = async (email, password, phone, name) => {
+const signUp = async (data) => {
+    let email = data.email;
+    let password = data.pass;
+    let phone = data.phone;
+    let name = data.name;
     let a = await Queries.userAlreadyExist(email, phone);
     if (a.ok) {
-        return "N";
+        return 401;
     } else {
         let b = await Queries.addUser(email, password, name, phone);
         let userId = await Queries.getUserIdByEmail(email);
         await Queries.createUserOrdersTable(userId);
-        return  b.ok ? "Y" : "N";
+        return  b.ok ? 200 : 401;
     }
 };
 
@@ -33,10 +37,10 @@ const ForgotPassword1 = async  (email) => {
         let a = await Queries.forgotPassword1(email, code);
         if (a.ok) {
             await mailSender.sendMailForForgotPasswordWithCode(email, code);
-            return "Y";
+            return 200;
         }
     } else {
-        return "N";
+        return 401;
     }
 };
 
@@ -47,7 +51,7 @@ const ForgotPassword2 = async  (email, code) => {
         await Queries.deleteFromForgotPassword(email);
         let b = await Queries.updatePasswordForUser(email, pass);
         mailSender.sendMailForForgotPasswordWithPassword(email, pass);
-        if (b.ok) return "Y";
+        if (b.ok) return 200;
     }
 };
 
